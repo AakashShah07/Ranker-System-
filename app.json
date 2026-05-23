@@ -1,17 +1,17 @@
 {
   "expo": {
-    "name": "RankerSystem",
+    "name": "Ranker System",
     "slug": "RankerSystem",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#0a0a0f",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -20,6 +20,27 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#00d4ff"
+        }
+      ],
+      [
+        "expo-navigation-bar",
+        {
+          "position": "relative",
+          "backgroundColor": "#0f0f1a"
+        }
+      ]
+    ],
+    "androidNavigationBar": {
+      "backgroundColor": "#0f0f1a",
+      "barStyle": "light-content"
     }
   }
 }

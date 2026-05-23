@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { StatusBar } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationBar } from 'expo-navigation-bar';
+import AppNavigator from './src/navigation/AppNavigator';
+import { requestPermissions, scheduleMorningReminder, scheduleEveningReminder } from './src/utils/notifications';
+import { useGameStore } from './src/store/useGameStore';
 
 export default function App() {
+  const { notificationsEnabled, reminderTime } = useGameStore();
+
+  useEffect(() => {
+    if (notificationsEnabled) {
+      requestPermissions().then((granted) => {
+        if (granted) {
+          const hour = parseInt(reminderTime.split(':')[0], 10) || 7;
+          scheduleMorningReminder(hour);
+          scheduleEveningReminder(21);
+        }
+      });
+    }
+  }, [notificationsEnabled, reminderTime]);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <StatusBar barStyle="light-content" backgroundColor="#0a0a0f" translucent={false} />
+      <NavigationBar style="dark" />
+      <AppNavigator />
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
