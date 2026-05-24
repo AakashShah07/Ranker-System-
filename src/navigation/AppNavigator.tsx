@@ -33,8 +33,8 @@ const Tabs = createBottomTabNavigator({
       borderTopColor: '#1e1e30',
       borderTopWidth: 1,
       paddingTop: 5,
-      // Let safe area handle bottom padding automatically
-      // No fixed height — adapts to device navigation bar
+      paddingBottom: 8,
+      height: 60,
     },
     tabBarHideOnKeyboard: true,
     tabBarActiveTintColor: '#00d4ff',

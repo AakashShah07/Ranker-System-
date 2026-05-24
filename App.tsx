@@ -10,6 +10,10 @@ export default function App() {
   const { notificationsEnabled, reminderTime } = useGameStore();
 
   useEffect(() => {
+    NavigationBar.setHidden(true);
+  }, []);
+
+  useEffect(() => {
     if (notificationsEnabled) {
       requestPermissions().then((granted) => {
         if (granted) {
@@ -24,7 +28,6 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <StatusBar barStyle="light-content" backgroundColor="#0a0a0f" translucent={false} />
-      <NavigationBar style="dark" />
       <AppNavigator />
     </SafeAreaProvider>
   );
